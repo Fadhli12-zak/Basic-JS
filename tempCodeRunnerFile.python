@@ -1,0 +1,57 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+
+# Create a list of tasks with start and end dates
+tasks = [
+    {'Task': 'Pengumpulan Kebutuhan', 'Start': '2024-06-01', 'Finish': '2024-06-05'},
+    {'Task': 'Identifikasi Stakeholder', 'Start': '2024-06-01', 'Finish': '2024-06-02'},
+    {'Task': 'Mengumpulkan Dokumentasi Kebutuhan', 'Start': '2024-06-03', 'Finish': '2024-06-05'},
+    {'Task': 'Analisis Kelayakan', 'Start': '2024-06-06', 'Finish': '2024-06-12'},
+    {'Task': 'Analisis Teknis', 'Start': '2024-06-06', 'Finish': '2024-06-07'},
+    {'Task': 'Analisis Sumber Daya', 'Start': '2024-06-08', 'Finish': '2024-06-09'},
+    {'Task': 'Analisis Operasional', 'Start': '2024-06-10', 'Finish': '2024-06-12'},
+    {'Task': 'Merancang Desain Arsitektur Sistem', 'Start': '2024-06-13', 'Finish': '2024-06-17'},
+    {'Task': 'Merancang Desain Database', 'Start': '2024-06-18', 'Finish': '2024-06-21'},
+    {'Task': 'Desain UI/UX', 'Start': '2024-06-22', 'Finish': '2024-06-26'},
+    {'Task': 'Menentukan bahasa Pemrograman apa yang akan dipakai', 'Start': '2024-06-27', 'Finish': '2024-06-29'},
+    {'Task': 'Pembuatan fitur dalam aplikasi dengan menggunakan bahasa pemrograman yang telah dipilih', 'Start': '2024-06-30', 'Finish': '2024-07-19'},
+    {'Task': 'Pengujian Unit', 'Start': '2024-07-20', 'Finish': '2024-07-24'},
+    {'Task': 'Pengujian Keterhubungan Fitur', 'Start': '2024-07-25', 'Finish': '2024-07-29'},
+    {'Task': 'Pengujian dengan pengguna', 'Start': '2024-07-30', 'Finish': '2024-08-03'},
+    {'Task': 'Persiapan Server', 'Start': '2024-08-04', 'Finish': '2024-08-06'},
+    {'Task': 'Konfigurasi Server', 'Start': '2024-08-07', 'Finish': '2024-08-08'},
+    {'Task': 'Penyebaran Aplikasi', 'Start': '2024-08-09', 'Finish': '2024-08-13'},
+    {'Task': 'Identifikasi dan Perbaikan Bug', 'Start': '2024-08-14', 'Finish': '2024-08-18'},
+    {'Task': 'Implementasi Fitur baru', 'Start': '2024-08-19', 'Finish': '2024-08-25'},
+    {'Task': 'Peningkatan fitur yang sudah ada', 'Start': '2024-08-26', 'Finish': '2024-09-01'}
+]
+
+# Convert tasks to DataFrame
+df = pd.DataFrame(tasks)
+
+# Convert date columns to datetime
+df['Start'] = pd.to_datetime(df['Start'])
+df['Finish'] = pd.to_datetime(df['Finish'])
+
+# Calculate duration
+df['Duration'] = (df['Finish'] - df['Start']).dt.days
+
+# Plotting the Gantt Chart
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plot the tasks
+for i, task in df.iterrows():
+    ax.barh(task['Task'], task['Duration'], left=task['Start'])
+
+# Formatting the chart
+ax.xaxis.set_major_locator(mdates.MonthLocator())
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
+plt.xticks(rotation=45)
+plt.xlabel('Date')
+plt.ylabel('Task')
+plt.title('Gantt Chart for Project Tasks')
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
