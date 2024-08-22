@@ -49,5 +49,3 @@ for (let b = 0; b < 10; b++) {
   }
   console.log(`nilai b adalah ${result} dan nilai a adalah ${b}`);
 }
-
-

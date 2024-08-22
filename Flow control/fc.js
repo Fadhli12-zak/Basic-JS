@@ -1,6 +1,5 @@
 function categorizeNumber(input) {
   /**
-   * TODO:
    * Lengkapilah fungsi ini agar dapat menghasilkan output berupa kategori bilangan berdasarkan input yang diberikan.
    * Dengan ketentuan sebagai berikut:
    * 1. Jika input bukan number, bangkitkan (throw) error.
@@ -10,27 +9,43 @@ function categorizeNumber(input) {
    * 5. Jika input adalah nol, kategorikan kembalikan dengan nilai "Nol".
    * 6. Jika input negatif, kembalikan dengan nilai "Negatif".
    */
+
   if (typeof input !== "number") {
     throw new Error("Input harus berupa bilangan bulat");
   }
+
   if (input === 0) {
     return "Nol";
-  }
-  for (let i = 0; i < input; i++) {
-    if (input % 2 !== 0) {
-      return "Prima";
-    }
   }
 
   if (input < 0) {
     return "Negatif";
   }
+
   if (input % 2 === 0) {
     return "Genap";
   }
-  if (input % 2 !== 0) {
-    return "Ganjil";
+
+  // Check if input is a prime number
+  if (isPrime(input)) {
+    return "Prima";
   }
+
+  return "Ganjil";
+}
+
+// Helper function to check if a number is prime
+function isPrime(num) {
+  if (num <= 1) return false;
+  if (num <= 3) return true;
+
+  if (num % 2 === 0 || num % 3 === 0) return false;
+
+  for (let i = 5; i * i <= num; i += 6) {
+    if (num % i === 0 || num % (i + 2) === 0) return false;
+  }
+
+  return true;
 }
 
 // Contoh
@@ -43,5 +58,5 @@ console.log(categorizeNumber(-5)); // Output: "Negatif"
 try {
   categorizeNumber("abc");
 } catch (error) {
-  console.log(error.message);
-} // Output: "Input harus berupa bilangan bulat"
+  console.log(error.message); // Output: "Input harus berupa bilangan bulat"
+}
