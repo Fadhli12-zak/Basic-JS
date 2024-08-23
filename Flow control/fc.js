@@ -26,7 +26,6 @@ function categorizeNumber(input) {
     return "Genap";
   }
 
-  // Check if input is a prime number
   if (isPrime(input)) {
     return "Prima";
   }
@@ -34,7 +33,6 @@ function categorizeNumber(input) {
   return "Ganjil";
 }
 
-// Helper function to check if a number is prime
 function isPrime(num) {
   if (num <= 1) return false;
   if (num <= 3) return true;
