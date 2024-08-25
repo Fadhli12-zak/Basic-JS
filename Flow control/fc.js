@@ -1,6 +1,4 @@
 function categorizeNumber(input) {
- 
-
   if (typeof input !== "number") {
     throw new Error("Input harus berupa bilangan bulat");
   }
@@ -39,14 +37,14 @@ function isPrime(num) {
   return true;
 }
 
-
-console.log(categorizeNumber(15)); 
-console.log(categorizeNumber(12)); 
-console.log(categorizeNumber(17)); 
-console.log(categorizeNumber(0)); 
-console.log(categorizeNumber(-5)); 
+console.log(categorizeNumber(15));
+console.log(categorizeNumber(12));
+console.log(categorizeNumber(17));
+console.log(categorizeNumber(0));
+console.log(categorizeNumber(-5));
 
 try {
   categorizeNumber("abc");
 } catch (error) {
-  console.log(error.message); 
+  console.log(error.message);
+}
