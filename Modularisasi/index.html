@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- modularisasi ESM di web -->
+    <script src="./esmodule.js" type="module"></script>
+    <!-- modularisasi ESM di web jika tidak mendukung ESModule -->
+    <script nomodule src="fallback.js"></script>
+    <!-- menambah Module ESModule secara inline -->
+    <script type="module">
+      import App from "./app.js";
+      console.log(App);
+    </script>
+  </body>
+</html>
